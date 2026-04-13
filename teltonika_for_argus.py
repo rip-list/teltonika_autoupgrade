@@ -685,7 +685,7 @@ def configure_wg(client, wg_ip, lan_ip, lan_prefix, backup_ip, backup_prefix, pa
     """
     Правит существующий WG конфиг из бэкапа:
       - генерит новый приватный ключ, выводит паблик в терминал
-      - обновляет addresses интерфейса (wg_ip/32)
+      - обновляет addresses интерфейса (wg_ip/26 (Пока хардкот, потом посмотрим ))
       - в allowed_ips пира заменяет старую сеть (backup_ip/backup_prefix)
         на новую (lan_ip/lan_prefix)
       - обновляет peer_pub и psk пира
@@ -720,7 +720,7 @@ def configure_wg(client, wg_ip, lan_ip, lan_prefix, backup_ip, backup_prefix, pa
         run(c, f"uci set {section}.public_key='{pub}'")
         # delete удаляет весь список addresses, потом добавляем один новый
         run(c, f"uci -q delete {section}.addresses; true")
-        run(c, f"uci add_list {section}.addresses='{wg_ip}/32'")
+        run(c, f"uci add_list {section}.addresses='{wg_ip}/26'")
 
     try:
         write_wg_keys(client)
