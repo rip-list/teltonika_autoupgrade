@@ -1,4 +1,4 @@
-# 📘 Инструкция по использованию `teltonika_for_argus.py`
+# 📘 Инструкция по использованию `teltonika_autoupdate.py`
 
 ---
 
